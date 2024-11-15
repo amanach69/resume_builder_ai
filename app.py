@@ -26,7 +26,7 @@ def main():
         if tool.lower() == 'openai':
             model = st.sidebar.selectbox("Select the model", ['gpt-4o', 'gpt-4.5-turbo', 'gpt-4-turbo', 'gpt-3.5-turbo'])
         else:
-            model = st.sidebar.selectbox("Select the model", ['gemma2-9b-it', 'llama3-groq-70b-8192-tool-use-preview', 'llama-3.1-70b-versatile', 'llama3-70b-8192'])
+            model = st.sidebar.selectbox("Select the model", ['gemma2-9b-it', 'llama3-groq-70b-8192-tool-use-preview', 'llama-3.1-8b-instant', 'llama3-8b-8192', 'llava-v1.5-7b-4096-preview'])
         
         _llm = initialize_llm(tool=tool, api_key=api_key, model=model)
         
