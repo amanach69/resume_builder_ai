@@ -1,13 +1,14 @@
-from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
+import streamlit as st
 
-def review_resume(_llm: ChatGroq, resume: str, job_description: dict) -> dict:
+@st.cache_resource()
+def review_resume(_llm, resume: str, job_description: dict) -> dict:
     """Review the resume against the job description.
 
     Args:
-        _llm (ChatGroq): The LLM model.
+        _llm: The LLM model.
         resume (str): The resume content.
         job_description (dict): The extracted job description.
 

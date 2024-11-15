@@ -1,13 +1,15 @@
-from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.output_parsers import JsonOutputParser
 
-def extract_job_description(_llm: ChatGroq, url: str) -> dict:
+import streamlit as st
+
+@st.cache_resource()
+def extract_job_description(_llm, url: str) -> dict:
     """Extract job description from the provided URL.
 
     Args:
-        _llm (ChatGroq): The LLM model.
+        _llm: The LLM model.
         url (str): The URL of the job description.
 
     Returns:
