@@ -4,7 +4,7 @@ from langchain_core.output_parsers import JsonOutputParser
 import streamlit as st
 
 @st.cache_resource()
-def review_resume(_llm, resume: str, job_description: dict) -> dict:
+def review_resume(_llm, model: str, resume: str, job_description: dict) -> dict:
     """Review the resume against the job description.
 
     Args:

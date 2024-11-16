@@ -1,8 +1,8 @@
 from langchain_core.prompts import ChatPromptTemplate
 import streamlit as st
 
-
-def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
+@st.cache_resource()
+def build_resume(_llm, model: str, resume: str, job_description: dict, review: dict) -> str:
     """Build an improved resume based on the review and job description.
 
     Args:
@@ -34,6 +34,9 @@ def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
         {job_description}
         - **Expert Review and Suggestions:**  
         {review}
+        
+        ### Ensure NO PREAMBLE AND NO POSTAMBLE
+        Only include the resume content in the output. Do not include any introductory or concluding remarks.
 
         **Instructions:**
         Analyze the weaknesses, areas for improvement, and final summary provided by the expert, and enhance the resume accordingly. Focus on the following aspects:
@@ -223,9 +226,7 @@ def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
         - Ensure the resume is concise, impactful, and tailored to the job description.
         - Repeat the enhancement process until the resume stands out among others.
         
-        ### Ensure NO PREAMBLE AND NO POSTAMBLE
-        
-        Give the output in structured plain text format. Only include the resume content without any additional information.
+        Give the output in structured plain text format with proper fonts and spacing(not many spaces, give space where needed). Ensure the output contains only the resume content without any preamble or postamble.
         '''
     )
     resume_builder_chain = resume_builder_prompt | _llm

@@ -1,41 +1,46 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.output_parsers import JsonOutputParser
+from langchain.output_parsers import OutputFixingParser
 
 import streamlit as st
 
 @st.cache_resource()
-def extract_job_description(_llm, url: str) -> dict:
+def extract_job_description(_llm, model: str, url: str) -> dict:
     """Extract job description from the provided URL.
 
     Args:
         _llm: The LLM model.
+        model (str): The model name.
         url (str): The URL of the job description.
 
     Returns:
         dict: The extracted job description.
     """
     website_loader = WebBaseLoader(web_path=url)
-    job_description = website_loader.load()
+    page_data = website_loader.load()
     
     job_description_prompt = ChatPromptTemplate.from_template(
         '''
-        You are a highly skilled job description analyst. Your task is to extract structured and detailed information from the provided job description.
+        You are a highly skilled job description analyst. Your task is to extract structured and detailed information from the provided text extracted from the website.
         
-        The job description is as follows:
-        {job_description}
-        
-        Please extract and organize the following details:
-        1. **Job Title:** Clearly state the title of the job.
-        2. **Detailed Job Description:** Provide a concise summary of the role, including its purpose and objectives.
-        3. **Key Responsibilities:** List the primary responsibilities and duties associated with the role.
-        4. **Required Qualifications:** Highlight the educational background, certifications, or mandatory requirements.
-        5. **Preferred Tools and Technologies:** List the software, tools, or technologies mentioned or implied in the job description.
-        6. **Experience Requirements:** Specify the years and types of experience required.
-        
-        Output this information in a JSON format.
+        ### SCRAPED TEXT FROM THE WEBSITE:
+        {page_data}
+
+        Please extract and organize the following details in JSON format with these keys:
+        "Job Title": The title of the job.
+        "Detailed Job Description": A concise summary of the role, including its purpose and objectives.
+        "Key Responsibilities": A list of the primary responsibilities and duties associated with the role.
+        "Required Qualifications": A list highlighting the educational background, certifications, or mandatory requirements.
+        "Preferred Tools and Technologies": A list of the software, tools, or technologies mentioned or implied in the job description.
+        "Experience Requirements": Specify the years and types of experience required.
+
+        Please provide the data in valid JSON format without any additional text or preamble.
         '''
     )
     job_description_extractor_chain = job_description_prompt | _llm
     parser = JsonOutputParser()
-    return parser.parse(job_description_extractor_chain.invoke({'job_description': job_description[0].page_content}).content)
+    response = job_description_extractor_chain.invoke({'page_data': page_data[0].page_content}).content
+    fixing_parser = OutputFixingParser.from_llm(llm=_llm, parser=parser)
+    parsed_response = fixing_parser.parse(response)
+    return parsed_response

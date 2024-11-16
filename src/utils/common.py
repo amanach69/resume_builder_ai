@@ -4,7 +4,6 @@ from langchain_community.document_loaders import PyPDFLoader
 import streamlit as st
 import tempfile
 
-
 def initialize_llm(tool: str = None, api_key: str = None, model: str = None):
     """Initialize the LLM model for the application.
 

@@ -55,12 +55,15 @@ def main():
                 if st.session_state.generate_new_resume:
                     
                     # extract the job description
-                    job_description = extract_job_description(_llm, url)
+                    job_description = extract_job_description(_llm, model, url)
+                    
+                    # convert the job description to string
+                    job_description_str = str(job_description)
 
                     # review the resume
-                    parsed_resume_review = review_resume(_llm, resume, job_description)
+                    parsed_resume_review = review_resume(_llm, model, resume, job_description_str)
                     
-                    improved_resume = build_resume(_llm, resume, job_description, parsed_resume_review)
+                    improved_resume = build_resume(_llm, model, resume, job_description_str, parsed_resume_review)
                     
                     st.code(improved_resume)
                     
@@ -71,7 +74,7 @@ def main():
                         st.session_state.generate_feedback = not st.session_state.generate_feedback
                         
                     if st.session_state.generate_feedback:
-                        old_and_new_resume_review_output = compare_resumes(_llm, resume, improved_resume, job_description)
+                        old_and_new_resume_review_output = compare_resumes(_llm, model, resume, improved_resume, job_description_str)
                         st.write('Old and New Resume Review \n')
                         st.code(old_and_new_resume_review_output)
         else:
