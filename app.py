@@ -46,13 +46,6 @@ def main():
                 # input for the job description URL
                 url = st.text_input("Enter the URL of the job description", "https://www.example.com")
                 
-                # extract the job description
-                job_description = extract_job_description(_llm, url)
-
-                # review the resume
-                parsed_resume_review = review_resume(_llm, resume, job_description)
-                
-                
                 if 'generate_new_resume' not in st.session_state:
                     st.session_state.generate_new_resume = False
                     
@@ -60,6 +53,13 @@ def main():
                     st.session_state.generate_new_resume = True
                     
                 if st.session_state.generate_new_resume:
+                    
+                    # extract the job description
+                    job_description = extract_job_description(_llm, url)
+
+                    # review the resume
+                    parsed_resume_review = review_resume(_llm, resume, job_description)
+                    
                     improved_resume = build_resume(_llm, resume, job_description, parsed_resume_review)
                     
                     st.code(improved_resume)
