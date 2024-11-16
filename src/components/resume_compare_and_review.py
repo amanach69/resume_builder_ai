@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 import streamlit as st
 
-@st.cache_resource()
+
 def compare_resumes(_llm, old_resume: str, new_resume: str, job_description: dict) -> str:
     """Compare the old and new resumes and provide feedback.
 

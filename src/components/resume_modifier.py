@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 import streamlit as st
 
-@st.cache_resource()
+
 def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
     """Build an improved resume based on the review and job description.
 
