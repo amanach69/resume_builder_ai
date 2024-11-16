@@ -222,9 +222,6 @@ def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
         **Final Review:**
         - Ensure the resume is concise, impactful, and tailored to the job description.
         - Repeat the enhancement process until the resume stands out among others.
-
-        **Output:**
-        Present the enhanced resume as plain text, formatted appropriately, and optimized for readability and professionalism. Ensure that the resume is concise, impactful, and aligned with the job description.
         
         ### Ensure NO PREAMBLE AND NO POSTAMBLE
         
