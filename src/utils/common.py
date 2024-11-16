@@ -3,19 +3,17 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 import streamlit as st
 import tempfile
-import os
 
 
-@st.cache_resource()
 def initialize_llm(tool: str = None, api_key: str = None, model: str = None):
     """Initialize the LLM model for the application.
 
     Args:
-        api_key (str): The OpenAI API key.
+        api_key (str): The api key for the LLM model.
         model (str): The model name.
 
     Returns:
-        ChatGroq: The initialized LLM model.
+        ChatOpenAI or ChatGroq: The LLM model object.
     """
     if tool.lower() == 'openai':
         return ChatOpenAI(api_key=api_key, model=model)

@@ -225,7 +225,7 @@ def build_resume(_llm, resume: str, job_description: dict, review: dict) -> str:
         
         ### Ensure NO PREAMBLE AND NO POSTAMBLE
         
-        Give the output in structured plain text format so that it can be easily converted into a PDF or Word document.
+        Give the output in structured plain text format. Only include the resume content without any additional information.
         '''
     )
     resume_builder_chain = resume_builder_prompt | _llm
