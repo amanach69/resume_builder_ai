@@ -50,7 +50,7 @@ def main():
                     st.session_state.generate_new_resume = False
                     
                 if st.button("Generate New Resume"):
-                    st.session_state.generate_new_resume = True
+                    st.session_state.generate_new_resume = not st.session_state.generate_new_resume
                     
                 if st.session_state.generate_new_resume:
                     
@@ -68,7 +68,7 @@ def main():
                         st.session_state.generate_feedback = False
                     
                     if st.button("Generate Feedback"):
-                        st.session_state.generate_feedback = True
+                        st.session_state.generate_feedback = not st.session_state.generate_feedback
                         
                     if st.session_state.generate_feedback:
                         old_and_new_resume_review_output = compare_resumes(_llm, resume, improved_resume, job_description)
