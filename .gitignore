@@ -163,5 +163,5 @@ cython_debug/
 
 .env
 venv/
-a.py
-temp/
+notebook/
+.devcontainer/

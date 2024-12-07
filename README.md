@@ -1,120 +1,139 @@
-# Professional Resume Reviewer and Builder  
+# 📄 Professional Resume Reviewer and Builder  
 
-**A smart and efficient app for freshers applying to AI and ML jobs.**  
-This tool automates resume review and customization, saving time by tailoring resumes to job descriptions in just a few steps.  
+> 🎯 **Transform your resume intelligently with AI-powered customization**
 
----
-
-## 🚀 Features  
-
-- **Job Description Extraction:**  
-  Provide a job posting link, and the app fetches relevant details using a powerful LLM chain.  
-
-- **Resume Analysis:**  
-  Upload your resume, and the app evaluates it against the job description to identify alignment gaps.  
-
-- **Resume Customization:**  
-  Automatically generates a modified resume tailored to the job description and feedback from the analysis phase.  
-
-- **Detailed Review:**
-  Compares the original and modified resumes, offering feedback on changes, relevance, and job suitability.  
+This smart tool helps job seekers customize their resumes automatically using advanced AI. Perfect for professionals targeting AI and ML positions, it analyzes job descriptions and optimizes resumes in seconds.
 
 ---
 
-## 🌟 Why Use This App?  
+## ✨ Features  
 
-- **Saves Time:** No more manually rewriting resumes for every job application.  
-- **Focused on AI/ML Roles:** Optimized for fields like Data Science, Data Analysis, and Data Engineering.  
-- **Comprehensive Feedback:** Step-by-step insights into how your resume aligns with the job requirements.  
-- **Automated and Smart:** Uses cutting-edge LLMs for accurate and efficient results.  
+🤖 **Intelligent Job Analysis**
+- Extracts key requirements from job URLs
+- Understands context and priorities
+- Supports multiple job boards
 
----
+📝 **Smart Resume Review**
+- Deep analysis of your current resume
+- Gap identification with job requirements
+- Skill alignment checking
 
-## 🛠️ Tech Stack  
+✨ **AI-Powered Customization**
+- Automatic resume tailoring
+- Keyword optimization
+- Format preservation
 
-- **Languages & Frameworks:**  
-  Python, Streamlit, LangChain  
-
-- **APIs & Libraries:**  
-  Groq API, OpenAI API  
-
-- **Core Models:**  
-  - **OpenAI Models:** `gpt-4o`, `gpt-4.5-turbo`, `gpt-4-turbo`, `gpt-3.5-turbo`  
-  - **Groq Models:** `gemma2-9b-it`, `llama3-groq-70b-8192-tool-use-preview`, `llama-3.1-8b-instant`, `llama3-8b-8192`, `llava-v1.5-7b-4096-preview`  
-
-- **Deployment:**  
-  Streamlit platform  
+📊 **Comprehensive Feedback**
+- Before-after comparison
+- Improvement suggestions
+- Alignment scoring
 
 ---
 
-## 🖥️ How to Use  
+## 🎯 Why Choose This Tool?  
 
-### Step 1: Clone the Repository  
-```bash  
-git clone https://github.com/<your-username>/<repo-name>.git  
-cd <repo-name>  
-```  
-
-### Step 2: Create a Virtual Environment  
-
-#### Using `conda`:  
-```bash  
-conda create -n resume_builder python=3.9  
-conda activate resume_builder  
-```  
-
-#### Using `pip` with `venv`:  
-```bash  
-python -m venv venv  
-source venv/bin/activate  # On Windows: venv\Scripts\activate  
-```  
-
-### Step 3: Install Requirements  
-```bash  
-pip install -r requirements.txt  
-```  
-
-### Step 4: Set Up API Keys  
-Add your **Groq API** and **OpenAI API** keys in a `.env` file:  
-```  
-GROQ_API_KEY=your_groq_api_key_here  
-OPENAI_API_KEY=your_openai_api_key_here  
-```  
-
-### Step 5: Run the App  
-```bash  
-streamlit run app.py  
-```  
-
-This point fits well in the **Limitations** section since it highlights a trade-off between cost and performance. Here's the updated section:
+- ⚡ **Lightning Fast:** Generate tailored resumes in minutes
+- 🎯 **AI/ML Focused:** Optimized for tech roles
+- 📈 **Data-Driven:** Uses advanced LLMs for accuracy
+- 🔄 **Iterative:** Continuous improvement through feedback
 
 ---
+
+## 🛠️ Technology Stack  
+
+### Core Technologies
+- 🐍 Python 3.9+
+- 🌟 Streamlit
+- 🔗 LangChain
+
+### AI Models
+- 🤖 **OpenAI:** `gpt-4o`, `gpt-4.5-turbo`, `gpt-4-turbo`, `gpt-3.5-turbo`
+- 🧠 **Groq:** `gemma2-9b-it`, `llama3-groq-70b-8192-tool-use-preview`, and more
+
+---
+
+## Installation
+
+### Option 1: Local Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ayushach007/resume_builder_ai
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd resume_builder_ai`
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Option 2: Docker Installation 🐳
+
+If you have Docker installed, you can run the application in a container:
+
+1. Build the Docker image:
+   ```bash
+   docker build -t resume-builder-app .
+   ```
+2. Run the container:
+   ```bash
+   docker run -p 8501:8501 resume-builder-app
+   ```
+
+## Usage
+
+### Local Usage
+1. Start the application:
+   ```bash
+   streamlit run Data_Analysis_App📊.py
+   ```
+2. Access the app at `http://localhost:8501` in your web browser.
+
+### Docker Usage
+- The application will automatically start when you run the container
+- Access the app at `http://localhost:8501` in your web browser
+- To stop the container, use `docker stop <container_id>`
 
 ## 📌 Limitations  
 
-- Optimized for AI/ML job roles. Performance may vary for other fields.  
-- LLM results depend on the quality and clarity of job descriptions and resumes provided.  
-- **Model Performance vs. Cost:** Based on usage, OpenAI models generally produce better results compared to open-source models. However, using OpenAI models incurs costs, making them less ideal for users seeking a completely free solution.
+- 🎯 Best suited for AI/ML roles
+- 📊 Results quality depends on input data
+- 💰 Premium models (OpenAI) offer better results but at a cost
 
 ---
 
-## 💡 Future Improvements  
+## 🔜 Roadmap  
 
-- Extend support to other fields beyond AI and ML.  
-- Add more resume templates and customization options.  
-- Improve accuracy by fine-tuning LLMs. 
-
----
-
-## 👥 Contributing  
-
-Contributions are welcome!  
-1. Fork the repository.  
-2. Create a feature branch.  
-3. Submit a pull request.  
+- [ ] Multi-language support
+- [ ] Additional resume templates
+- [ ] Custom LLM fine-tuning
+- [ ] ATS score prediction
+- [ ] Interview preparation suggestions
 
 ---
 
-## 📄 License  
+## 🤝 Contributing  
 
-This project is licensed under the ['GNU'](LICENSE)
+We welcome contributions! Here's how:
+
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch
+3. 💻 Make your changes
+4. 🔍 Test thoroughly
+5. 📤 Submit a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+---
+
+## 📜 License  
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+Made with ❤️ by Ayush Acharya
+</div>

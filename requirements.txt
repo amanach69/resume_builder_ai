@@ -1,11 +1,18 @@
+# langchain
 langchain
 langchain-core
 langchain-community
 langchain-openai
 langchain-groq
+
+# dev
 python-dotenv
 notebook
+
+# dependencies
 unstructured
 streamlit
 PyPDF2
 pdfplumber
+python-docx
+firecrawl-py

@@ -55,6 +55,8 @@ def compare_resumes(_llm, model: str, old_resume: str, new_resume: str, job_desc
            - **Summary:** Provide a comprehensive summary of your findings, emphasizing key improvements and remaining areas for enhancement.
 
         Present your analysis in a clear and structured manner, using headings and bullet points to make it easy to understand which parts of the resume match the job description and what areas need improvement.
+        
+        ## NO PREAMBLE AND POSTAMBLE
 
         '''
     )
