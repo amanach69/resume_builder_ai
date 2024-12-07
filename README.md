@@ -124,8 +124,6 @@ We welcome contributions! Here's how:
 4. 🔍 Test thoroughly
 5. 📤 Submit a pull request
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
 ---
 
 ## 📜 License  
