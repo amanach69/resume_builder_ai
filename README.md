@@ -62,7 +62,25 @@ This smart tool helps job seekers customize their resumes automatically using ad
    ```
 2. Navigate to the project directory:
    ```bash
-   cd resume_builder_ai`
+   cd resume_builder_ai
+   ```
+3. Create a virtual environment:
+   - Python
+   ```bash
+   python -m venv env 
+   ```
+   - Conda
+   ```bash
+   conda create -n env python=3.9
+   ```
+4. Activate the virtual environment:
+   - Python
+   ```bash
+   source env/bin/activate # or .env/bin/activate for Windows
+   ```
+   - Conda
+   ```bash
+   conda activate env
    ```
 3. Install the required dependencies:
    ```bash
