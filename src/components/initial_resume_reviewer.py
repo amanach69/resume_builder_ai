@@ -98,6 +98,8 @@ def review_resume(_llm, model: str, resume: str, job_description: dict) -> dict:
         ```
 
         Ensure that the JSON is properly formatted and all strings are enclosed in double quotes. Do not include any extraneous information outside of this JSON structure.
+        
+        ## NO PREAMBLE AND POSTAMBLE
         '''
     )
     resume_review_chain = resume_review_prompt | _llm

@@ -30,13 +30,20 @@ def main():
             model = st.sidebar.selectbox("Select the model", ['gemma2-9b-it', 'llama3-groq-70b-8192-tool-use-preview', 'llama-3.1-8b-instant', 'llama3-8b-8192', 'llava-v1.5-7b-4096-preview'])
         
         # input for the API key
-        api_key = st.sidebar.text_input("Enter your API key", type='password')
+        model_api_key = st.sidebar.text_input("Enter your model API key", type='password')
+        
+        # give crawl option
+        crawl_type = st.sidebar.selectbox("Select the crawl type", ['default', 'firecrawl'])
+        
+        # input for the API key
+        if crawl_type == 'firecrawl':
+            firecrawl_api_key = st.sidebar.text_input("Enter your FireCrawl API key", type='password')
         
         # check if the API key is provided
-        if api_key:
+        if model_api_key:
             
             # initialize the LLM model
-            _llm = initialize_llm(tool=tool, api_key=api_key, model=model)
+            _llm = initialize_llm(tool=tool, api_key=model_api_key, model=model)
             
             # upload the resume
             resume = upload_resume()
@@ -55,8 +62,13 @@ def main():
                 if st.session_state.generate_new_resume:
                     
                     # extract the job description
-                    job_description = extract_job_description(_llm, model, url)
-                    
+                    if crawl_type == 'default':
+                        job_description = extract_job_description(_llm, model, url)
+                    elif crawl_type == 'firecrawl':
+                        job_description = extract_job_description(_llm, model, url, crawl_type, firecrawl_api_key)
+                    else:
+                        st.error("Invalid crawl type")
+                        
                     # convert the job description to string
                     job_description_str = str(job_description)
 

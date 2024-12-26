@@ -9,9 +9,10 @@
 This intelligent application leverages state-of-the-art Language Models to analyze job descriptions, review resumes, and automatically generate tailored versions that align perfectly with specific job requirements. Built specifically for AI, ML, and Data Science roles, it streamlines the job application process and increases your chances of landing interviews.
 
 ![Demo](assets/demo.gif)
-*Note: Add a demo.gif to the assets folder to show the app in action*
+_Note: Add a demo.gif to the assets folder to show the app in action_
 
 ## 📋 Table of Contents
+
 - [Features](#-features)
 - [Why Use This App?](#-why-use-this-app)
 - [Tech Stack](#️-tech-stack)
@@ -27,16 +28,19 @@ This intelligent application leverages state-of-the-art Language Models to analy
 ## 🚀 Features
 
 - **Smart Job Description Analysis:**
+
   - Automatic extraction from job posting URLs
   - Identification of key requirements and skills
   - Understanding of company culture and values
 
 - **Comprehensive Resume Analysis:**
+
   - Deep evaluation against job requirements
   - Gap identification in skills and experience
   - Keyword optimization suggestions
 
 - **Intelligent Resume Customization:**
+
   - Automated content restructuring
   - Skills and experience prioritization
   - Achievement highlighting based on job relevance
@@ -57,11 +61,13 @@ This intelligent application leverages state-of-the-art Language Models to analy
 ## 🛠️ Tech Stack
 
 ### Core Technologies
+
 - **Frontend:** Streamlit
 - **Backend:** Python 3.9+
 - **AI Framework:** LangChain
 
 ### AI Models
+
 - **OpenAI:**
   - GPT-4
   - GPT-4-turbo
@@ -72,12 +78,14 @@ This intelligent application leverages state-of-the-art Language Models to analy
   - LLaVA-v1.5
 
 ### Deployment
+
 - Streamlit Cloud Platform
 - Docker support (coming soon)
 
 ## 💻 Installation
 
 ### Prerequisites
+
 - Python 3.9 or higher
 - Git
 - Pip or Conda package manager
@@ -85,6 +93,7 @@ This intelligent application leverages state-of-the-art Language Models to analy
 ### Step-by-Step Setup
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/<your-username>/resume-builder.git
    cd resume-builder
@@ -93,12 +102,14 @@ This intelligent application leverages state-of-the-art Language Models to analy
 2. **Set Up Virtual Environment**
 
    Using Conda:
+
    ```bash
    conda create -n resume_builder python=3.9
    conda activate resume_builder
    ```
 
    Using venv:
+
    ```bash
    python -m venv venv
    # Windows:
@@ -108,12 +119,14 @@ This intelligent application leverages state-of-the-art Language Models to analy
    ```
 
 3. **Install Dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Configure Environment Variables**
    Create a `.env` file in the project root:
+
    ```env
    GROQ_API_KEY=your_groq_api_key_here
    OPENAI_API_KEY=your_openai_api_key_here
@@ -127,11 +140,14 @@ This intelligent application leverages state-of-the-art Language Models to analy
 ## 🔧 Configuration
 
 ### API Keys
+
 - Get your Groq API key from [Groq Console](https://console.groq.com)
 - Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com)
 
 ### Model Selection
+
 You can configure which models to use in `config.yaml`:
+
 ```yaml
 models:
   primary: gpt-4-turbo
@@ -150,6 +166,7 @@ models:
 ### Common Issues
 
 1. **API Key Errors**
+
    ```bash
    # Check if environment variables are set
    echo %GROQ_API_KEY%  # Windows
@@ -157,6 +174,7 @@ models:
    ```
 
 2. **Dependencies Issues**
+
    ```bash
    pip install --upgrade pip
    pip install -r requirements.txt --force-reinstall

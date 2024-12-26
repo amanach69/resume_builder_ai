@@ -1,9 +1,9 @@
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
-from langchain_community.document_loaders import UnstructuredWordDocumentLoader
 import streamlit as st
 import pdfplumber
-
+from docx import Document
+from docx.shared import Pt, Inches
 
 def initialize_llm(tool: str = None, api_key: str = None, model: str = None):
     """Initialize the LLM model for the application.
@@ -22,22 +22,6 @@ def initialize_llm(tool: str = None, api_key: str = None, model: str = None):
         return ChatGroq(model=model, api_key=api_key)
     else:
         raise ValueError("Invalid tool specified. Please choose 'openai' or 'groq'.")
-
-# def upload_resume() -> str:
-#     """Upload and read the resume file."""
-#     uploaded_file = st.sidebar.file_uploader("Upload Resume", type=['pdf', 'docx'])
-#     if uploaded_file:
-#         if 
-#         with tempfile.NamedTemporaryFile(delete=False) as temp:
-#             temp.write(uploaded_file.getvalue())
-#             pdf_path = temp.name
-
-#         resume_loader = PyPDFLoader(file_path=pdf_path)
-#         return ' '.join([doc.page_content for doc in resume_loader.load()])
-#     else:
-#         st.info("Please upload a resume")
-#         return None
-
 
 def upload_resume() -> str:
     """Upload and read the resume file (PDF, DOCX, or TXT)."""
@@ -60,10 +44,9 @@ def upload_resume() -> str:
                     text += page.extract_text()
         # DOCX Handling
         elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            loader = UnstructuredWordDocumentLoader(uploaded_file)
-            docs = loader.load()
-            for doc in docs:
-                text += doc.page_content
+            doc = Document(uploaded_file)
+            for para in doc.paragraphs:
+                text += para.text
         # TXT Handling
         elif uploaded_file.type == "text/plain":
             text = uploaded_file.read().decode("utf-8")

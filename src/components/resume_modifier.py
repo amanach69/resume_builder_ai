@@ -24,13 +24,16 @@ def build_resume(_llm, model: str, resume: str, job_description: dict, review: d
             **Constraints:**
             - Do not introduce new information or fabricate experiences.
             - Concentrate on rephrasing and enhancing existing content.
-            - Provide only the resume content in the output, excluding any preamble or postamble.
+            - Provide only the resume content in the output. No any other information.
+            - No any links or URLs, html tags, or any other symbols or information.
 
             **Resources:**
             - **Pre-filled Resume:**  
             {resume}
+            
             - **Job Description:**  
             {job_description}
+            
             - **Expert Review and Suggestions:**  
             {review}
 
@@ -47,6 +50,7 @@ def build_resume(_llm, model: str, resume: str, job_description: dict, review: d
                 9. **Professional Affiliations**
                 10. **Publications**
                 11. **Additional Information**
+
             - You may rearrange the sections based on significance.
             - Utilize a structured plain text format with proper spacing.
             - Employ bullet points and concise sentences.
@@ -238,12 +242,9 @@ def build_resume(_llm, model: str, resume: str, job_description: dict, review: d
 
         - Before: "Experience with outdated programming languages."
         - After: "Highlighted experience with modern programming languages and tools relevant to the job description."
-
-        **Final Review:**
-        - Ensure the resume is concise, impactful, and tailored to the job description.
-        - Repeat the enhancement process until the resume stands out among others.
         
-        Give the output in structured plain text format with proper fonts. Ensure the output contains only the resume content without any preamble or postamble.
+        ## NO PREAMBLE AND POSTAMBLE. Just the resume content.
+        
         '''
     )
     resume_builder_chain = resume_builder_prompt | _llm
