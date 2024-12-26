@@ -1,120 +1,187 @@
-# Professional Resume Reviewer and Builder  
+# Professional Resume Reviewer and Builder
 
-**A smart and efficient app for freshers applying to AI and ML jobs.**  
-This tool automates resume review and customization, saving time by tailoring resumes to job descriptions in just a few steps.  
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![License](https://img.shields.io/badge/License-GNU-green.svg)](LICENSE)
 
----
+> **A smart AI-powered resume customization tool for AI/ML job seekers**
 
-## 🚀 Features  
+This intelligent application leverages state-of-the-art Language Models to analyze job descriptions, review resumes, and automatically generate tailored versions that align perfectly with specific job requirements. Built specifically for AI, ML, and Data Science roles, it streamlines the job application process and increases your chances of landing interviews.
 
-- **Job Description Extraction:**  
-  Provide a job posting link, and the app fetches relevant details using a powerful LLM chain.  
+![Demo](assets/demo.gif)
+*Note: Add a demo.gif to the assets folder to show the app in action*
 
-- **Resume Analysis:**  
-  Upload your resume, and the app evaluates it against the job description to identify alignment gaps.  
+## 📋 Table of Contents
+- [Features](#-features)
+- [Why Use This App?](#-why-use-this-app)
+- [Tech Stack](#️-tech-stack)
+- [Installation](#-installation)
+- [Usage Guide](#-usage-guide)
+- [Configuration](#-configuration)
+- [Limitations](#-limitations)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
-- **Resume Customization:**  
-  Automatically generates a modified resume tailored to the job description and feedback from the analysis phase.  
+## 🚀 Features
 
-- **Detailed Review:**
-  Compares the original and modified resumes, offering feedback on changes, relevance, and job suitability.  
+- **Smart Job Description Analysis:**
+  - Automatic extraction from job posting URLs
+  - Identification of key requirements and skills
+  - Understanding of company culture and values
 
----
+- **Comprehensive Resume Analysis:**
+  - Deep evaluation against job requirements
+  - Gap identification in skills and experience
+  - Keyword optimization suggestions
 
-## 🌟 Why Use This App?  
+- **Intelligent Resume Customization:**
+  - Automated content restructuring
+  - Skills and experience prioritization
+  - Achievement highlighting based on job relevance
 
-- **Saves Time:** No more manually rewriting resumes for every job application.  
-- **Focused on AI/ML Roles:** Optimized for fields like Data Science, Data Analysis, and Data Engineering.  
-- **Comprehensive Feedback:** Step-by-step insights into how your resume aligns with the job requirements.  
-- **Automated and Smart:** Uses cutting-edge LLMs for accurate and efficient results.  
+- **Detailed Review & Feedback:**
+  - Side-by-side comparison
+  - Improvement suggestions
+  - ATS optimization tips
 
----
+## 🌟 Why Use This App?
 
-## 🛠️ Tech Stack  
+- **Time Efficiency:** Reduce resume tailoring time from hours to minutes
+- **AI/ML Focus:** Specialized for tech roles in Data Science, ML Engineering, and Analytics
+- **Smart Analysis:** Leverages multiple LLMs for comprehensive evaluation
+- **ATS Optimization:** Ensures your resume passes Applicant Tracking Systems
+- **Professional Guidance:** Provides expert-level feedback on improvements
 
-- **Languages & Frameworks:**  
-  Python, Streamlit, LangChain  
+## 🛠️ Tech Stack
 
-- **APIs & Libraries:**  
-  Groq API, OpenAI API  
+### Core Technologies
+- **Frontend:** Streamlit
+- **Backend:** Python 3.9+
+- **AI Framework:** LangChain
 
-- **Core Models:**  
-  - **OpenAI Models:** `gpt-4o`, `gpt-4.5-turbo`, `gpt-4-turbo`, `gpt-3.5-turbo`  
-  - **Groq Models:** `gemma2-9b-it`, `llama3-groq-70b-8192-tool-use-preview`, `llama-3.1-8b-instant`, `llama3-8b-8192`, `llava-v1.5-7b-4096-preview`  
+### AI Models
+- **OpenAI:**
+  - GPT-4
+  - GPT-4-turbo
+  - GPT-3.5-turbo
+- **Groq:**
+  - Gemma-2-9b
+  - LLaMA-3-70b
+  - LLaVA-v1.5
 
-- **Deployment:**  
-  Streamlit platform  
+### Deployment
+- Streamlit Cloud Platform
+- Docker support (coming soon)
 
----
+## 💻 Installation
 
-## 🖥️ How to Use  
+### Prerequisites
+- Python 3.9 or higher
+- Git
+- Pip or Conda package manager
 
-### Step 1: Clone the Repository  
-```bash  
-git clone https://github.com/<your-username>/<repo-name>.git  
-cd <repo-name>  
-```  
+### Step-by-Step Setup
 
-### Step 2: Create a Virtual Environment  
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/<your-username>/resume-builder.git
+   cd resume-builder
+   ```
 
-#### Using `conda`:  
-```bash  
-conda create -n resume_builder python=3.9  
-conda activate resume_builder  
-```  
+2. **Set Up Virtual Environment**
 
-#### Using `pip` with `venv`:  
-```bash  
-python -m venv venv  
-source venv/bin/activate  # On Windows: venv\Scripts\activate  
-```  
+   Using Conda:
+   ```bash
+   conda create -n resume_builder python=3.9
+   conda activate resume_builder
+   ```
 
-### Step 3: Install Requirements  
-```bash  
-pip install -r requirements.txt  
-```  
+   Using venv:
+   ```bash
+   python -m venv venv
+   # Windows:
+   .\venv\Scripts\activate
+   # Unix/MacOS:
+   source venv/bin/activate
+   ```
 
-### Step 4: Set Up API Keys  
-Add your **Groq API** and **OpenAI API** keys in a `.env` file:  
-```  
-GROQ_API_KEY=your_groq_api_key_here  
-OPENAI_API_KEY=your_openai_api_key_here  
-```  
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Step 5: Run the App  
-```bash  
-streamlit run app.py  
-```  
+4. **Configure Environment Variables**
+   Create a `.env` file in the project root:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
 
-This point fits well in the **Limitations** section since it highlights a trade-off between cost and performance. Here's the updated section:
+5. **Launch the Application**
+   ```bash
+   streamlit run app.py
+   ```
 
----
+## 🔧 Configuration
 
-## 📌 Limitations  
+### API Keys
+- Get your Groq API key from [Groq Console](https://console.groq.com)
+- Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com)
 
-- Optimized for AI/ML job roles. Performance may vary for other fields.  
-- LLM results depend on the quality and clarity of job descriptions and resumes provided.  
-- **Model Performance vs. Cost:** Based on usage, OpenAI models generally produce better results compared to open-source models. However, using OpenAI models incurs costs, making them less ideal for users seeking a completely free solution.
+### Model Selection
+You can configure which models to use in `config.yaml`:
+```yaml
+models:
+  primary: gpt-4-turbo
+  fallback: gemma-2-9b
+```
 
----
+## ❗ Limitations
 
-## 💡 Future Improvements  
+- **Domain Specificity:** Optimized for AI/ML roles; may need adjustments for other fields
+- **Language Support:** Currently supports English resumes only
+- **API Costs:** OpenAI models provide better results but incur usage costs
+- **Processing Time:** Complex resumes may take longer to analyze
 
-- Extend support to other fields beyond AI and ML.  
-- Add more resume templates and customization options.  
-- Improve accuracy by fine-tuning LLMs. 
+## 🔍 Troubleshooting
 
----
+### Common Issues
 
-## 👥 Contributing  
+1. **API Key Errors**
+   ```bash
+   # Check if environment variables are set
+   echo %GROQ_API_KEY%  # Windows
+   echo $GROQ_API_KEY   # Unix/MacOS
+   ```
 
-Contributions are welcome!  
-1. Fork the repository.  
-2. Create a feature branch.  
-3. Submit a pull request.  
+2. **Dependencies Issues**
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt --force-reinstall
+   ```
 
----
+3. **Memory Errors**
+   - Reduce batch size in config.yaml
+   - Use lighter models for analysis
 
-## 📄 License  
+## 👥 Contributing
 
-This project is licensed under the ['GNU'](LICENSE)
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Contact
+
+Project Link: [https://github.com/<your-username>/resume-builder](https://github.com/<your-username>/resume-builder)
+
+For support or queries, please [open an issue](https://github.com/<your-username>/resume-builder/issues) or contact the maintainers.
