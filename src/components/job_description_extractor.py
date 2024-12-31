@@ -9,12 +9,11 @@ import streamlit as st
 from typing import Literal
 
 @st.cache_resource()
-def extract_job_description(_llm, model: str, url: str, type: Literal['default', 'firecrawl'] = 'default', api_key: str = None) -> dict:
+def extract_job_description(_llm, url: str, type: Literal['default', 'firecrawl'] = 'default', api_key: str = None) -> dict:
     """Extract job description from the provided URL using specified scraping method.
 
     Args:
         _llm: The LLM model.
-        model (str): The model name.
         url (str): The URL of the job description.
         type (Literal['default', 'firecrawl']): The scraping method to use.
             'default': Uses WebBaseLoader (no API key required)
@@ -30,58 +29,50 @@ def extract_job_description(_llm, model: str, url: str, type: Literal['default',
     Raises:
         ValueError: If 'firecrawl' type is selected but no API key is provided.
     """
-    if type == 'default':
-        website_loader = WebBaseLoader(web_path=url)
-        page_data = website_loader.load()
+    try:
+        job_description_prompt = ChatPromptTemplate.from_template(
+            '''
+            You are a highly skilled job description analyst. Your task is to extract structured and detailed information from the provided text extracted from the website.
+            
+            ### SCRAPED TEXT FROM THE WEBSITE:
+            {page_data}
+
+            Please extract and organize the following details in JSON format with these keys:
+            "Job Title": The title of the job.
+            "Detailed Job Description": A concise summary of the role, including its purpose and objectives.
+            "Key Responsibilities": A list of the primary responsibilities and duties associated with the role.
+            "Skills": A list highlighting the key skills, abilities, or competencies required for the role.
+            "Required Qualifications": A list highlighting the educational background, certifications, or mandatory requirements.
+            "Preferred Tools and Technologies": A list of the software, tools, or technologies mentioned or implied in the job description.
+            "Experience Requirements": Specify the years and types of experience required.
+
+            Please provide the data in valid JSON format without any additional text or preamble.
+            
+            ## NO PREAMBLE AND POSTAMBLE 
+            '''
+        )
+        if type == 'default':
+            website_loader = WebBaseLoader(web_path=url)
+            page_data = website_loader.load()
+            job_description_extractor_chain = job_description_prompt | _llm
+            parser = JsonOutputParser()
+            response = job_description_extractor_chain.invoke({'page_data': page_data[0].page_content}).content
+            fixing_parser = OutputFixingParser.from_llm(llm=_llm, parser=parser)
+            parsed_response = fixing_parser.parse(response)
+            # st.expander("Extracted Job Description", expanded=True).write(parsed_response)
+            return parsed_response
+        
+        elif type == 'firecrawl':
+            if api_key is None:
+                raise ValueError("API key is required for FireCrawlLoader.")
+            
+            firecrawl_loader = FireCrawlLoader(url=url, api_key=api_key)
+            page_data = firecrawl_loader.load()
+            job_description_extractor_chain = job_description_prompt | _llm | JsonOutputParser()
+            response = job_description_extractor_chain.invoke({'page_data': page_data[0].page_content})
+            # st.expander("Extracted Job Description", expanded=True).write(response
+            return response
     
-    elif type == 'firecrawl':
-        if api_key is None:
-            raise ValueError("API key is required for FireCrawlLoader.")
-        
-        firecrawl_loader = FireCrawlLoader(url=url, api_key=api_key)
-        page_data = firecrawl_loader.load()
-    
-    else:
-        raise ValueError("Invalid type selected. Please choose 'default' or 'firecrawl'.")
-    
-    job_description_prompt = ChatPromptTemplate.from_template(
-        '''
-        You are a highly skilled job description analyst. Your task is to extract structured and detailed information from the provided text extracted from the website.
-        
-        ### SCRAPED TEXT FROM THE WEBSITE:
-        {page_data}
-
-        Please extract and organize the following details in JSON format with these keys:
-        "Job Title": The title of the job.
-        "Detailed Job Description": A concise summary of the role, including its purpose and objectives.
-        "Key Responsibilities": A list of the primary responsibilities and duties associated with the role.
-        "Skills": A list highlighting the key skills, abilities, or competencies required for the role.
-        "Required Qualifications": A list highlighting the educational background, certifications, or mandatory requirements.
-        "Preferred Tools and Technologies": A list of the software, tools, or technologies mentioned or implied in the job description.
-        "Experience Requirements": Specify the years and types of experience required.
-
-        Please provide the data in valid JSON format without any additional text or preamble.
-        
-        ## NO PREAMBLE AND POSTAMBLE 
-        '''
-    )
-    if loader == 'webbase':
-        website_loader = WebBaseLoader(web_path=url)
-        page_data = website_loader.load()
-        job_description_extractor_chain = job_description_prompt | _llm
-        parser = JsonOutputParser()
-        response = job_description_extractor_chain.invoke({'page_data': page_data[0].page_content}).content
-        fixing_parser = OutputFixingParser.from_llm(llm=_llm, parser=parser)
-        parsed_response = fixing_parser.parse(response)
-        return parsed_response
-
-    elif loader == 'firecrawl':
-        website_loader = FireCrawlLoader(url=url, api_key=api_key)
-        page_data = website_loader.load()
-        job_description_extractor_chain = job_description_prompt | _llm | JsonOutputParser()
-        response = job_description_extractor_chain.invoke({'page_data': page_data[0].page_content}).content
-        return response
-
-    else:
-        raise ValueError("Invalid loader specified. Please choose 'webbase' or 'firecrawl'.")
-        
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        return None

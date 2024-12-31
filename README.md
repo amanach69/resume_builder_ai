@@ -8,8 +8,21 @@
 
 This intelligent application leverages state-of-the-art Language Models to analyze job descriptions, review resumes, and automatically generate tailored versions that align perfectly with specific job requirements. Built specifically for AI, ML, and Data Science roles, it streamlines the job application process and increases your chances of landing interviews.
 
-![Demo](assets/demo.gif)
-_Note: Add a demo.gif to the assets folder to show the app in action_
+## 📸 App Preview
+
+Get a quick look at the **Resume Builder App** in action! Below are screenshots of the app's user interface and an example of the generated email response:
+
+1. **App UI**
+
+   ![App UI Screenshot](notebook/resources/Screenshot%202024-12-31%20190553.png)
+
+2. **Modified Sample Resume**
+
+   ![Modified Resume Screenshot](notebook/resources/Screenshot%202024-12-31%20191735.png)
+
+3. **Comparison and Feedback On New Resume**
+
+   ![Feedback Screenshot](notebook/resources/Screenshot%202024-12-31%20191818.png)
 
 ## 📋 Table of Contents
 
@@ -21,7 +34,6 @@ _Note: Add a demo.gif to the assets folder to show the app in action_
 - [Configuration](#-configuration)
 - [Limitations](#-limitations)
 - [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
 - [License](#-license)
 - [Contact](#-contact)
 
@@ -71,26 +83,18 @@ _Note: Add a demo.gif to the assets folder to show the app in action_
 - **OpenAI:**
   - GPT-4
   - GPT-4-turbo
+  - GPT-4.5-turbo
   - GPT-3.5-turbo
 - **Groq:**
   - Gemma-2-9b
   - LLaMA-3-70b
-  - LLaVA-v1.5
+  - LLaMA-3-8b
+  - LLaMA-3.1-8b-instant
+  - LLaVA-v1.5-7b
 
-### Deployment
+## 🛠️ Installation
 
-- Streamlit Cloud Platform
-- Docker support (coming soon)
-
-## 💻 Installation
-
-### Prerequisites
-
-- Python 3.9 or higher
-- Git
-- Pip or Conda package manager
-
-### Step-by-Step Setup
+### Streamlit Deployment
 
 1. **Clone the Repository**
 
@@ -133,9 +137,35 @@ _Note: Add a demo.gif to the assets folder to show the app in action_
    ```
 
 5. **Launch the Application**
+
    ```bash
    streamlit run app.py
    ```
+
+### Docker Deployment
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/<your-username>/resume-builder.git
+   cd resume-builder
+   ```
+
+2. **Build the Docker Image**
+
+   ```bash
+   docker build -t resume-builder:latest .
+   ```
+
+3. **Run the Docker Container**
+
+   ```bash
+   docker run -d -p 8501:8501 --name resume_builder_app resume-builder:latest
+   ```
+
+4. **Access the Application**
+
+   Open your web browser and navigate to `http://localhost:8501` to access the Resume Builder application.
 
 ## 🔧 Configuration
 
@@ -143,16 +173,6 @@ _Note: Add a demo.gif to the assets folder to show the app in action_
 
 - Get your Groq API key from [Groq Console](https://console.groq.com)
 - Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com)
-
-### Model Selection
-
-You can configure which models to use in `config.yaml`:
-
-```yaml
-models:
-  primary: gpt-4-turbo
-  fallback: gemma-2-9b
-```
 
 ## ❗ Limitations
 
@@ -180,26 +200,6 @@ models:
    pip install -r requirements.txt --force-reinstall
    ```
 
-3. **Memory Errors**
-   - Reduce batch size in config.yaml
-   - Use lighter models for analysis
-
-## 👥 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details.
-
-## 📬 Contact
-
-Project Link: [https://github.com/<your-username>/resume-builder](https://github.com/<your-username>/resume-builder)
-
-For support or queries, please [open an issue](https://github.com/<your-username>/resume-builder/issues) or contact the maintainers.
