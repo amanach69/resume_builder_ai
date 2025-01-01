@@ -165,4 +165,5 @@ cython_debug/
 venv/
 a.py
 temp/
-notebook/
+notebook/*
+!notebook/resource/
