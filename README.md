@@ -99,7 +99,7 @@ Get a quick look at the **Resume Builder App** in action! Below are screenshots 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/<your-username>/resume-builder.git
+   git clone https://github.com/amanach69/resume_builder_ai.git
    cd resume-builder
    ```
 
@@ -147,7 +147,7 @@ Get a quick look at the **Resume Builder App** in action! Below are screenshots 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/<your-username>/resume-builder.git
+   git clone https://github.com/amanach69/resume_builder_ai.git
    cd resume-builder
    ```
 
